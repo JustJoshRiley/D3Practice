@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <svg id="svg" width="500" height="500">
+        <circle cx="200" cy="200" r="123" fill="#0ff"/>
+
+        <!-- <circle cx="250" cy="250" r="123" fill="#0ff"></circle> -->
+        <circle cx="16.129032258064516" cy="222.25708822052192" r="47.88209465530098" fill="hsl(160.02510351877578, 100%, 50%)" opacity="0.5" stroke="hsl(94.4703439376888, 100%, 50%)" stroke-width="2.6241762204913552"></circle>
+        <circle cx="32.25806451612903" cy="98.42029526539491" r="14.51146371457872" fill="hsl(70.86261259108434, 100%, 50%)" opacity="0.5" stroke="hsl(294.6841152013748, 100%, 50%)" stroke-width="8.185669866704856"></circle>
+
+    </svg>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        function makeRandomData(n) {
+            const array = [];
+            for (let i = 0; i < n; i += 1) {
+                array.push({ a: Math.random(), b: Math.random(), c: Math.random() });
+            }
+            return array;
+        }
+
+        const data = makeRandomData(11);
+
+        // D3
+        d3.select('#svg')
+        .style('border', '1px solid #000')
+        .selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('cx', (d, i) => i * 500 / data.length)
+        .attr('cy', d => d.a * 500)
+        .attr('r', d => d.c * 100)
+        .attr('fill', d => 'green')
+        .attr('opacity', () => 0.5)
+    </script>
+</body>
+</html>
